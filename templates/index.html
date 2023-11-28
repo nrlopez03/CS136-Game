@@ -8,30 +8,23 @@
 
     </head>
     <body>
-        <h1 style="text-align:center">{{ title }}</h1>
-        <h2 style="text-align:center">Position: {{ position }}</h2>
-        <h3 style="text-align:center">Your hand:</h3>
+        <h1 style="text-align:center">Choose Your Skill Level</h1>
         
-        <form action="/" method="post" id="actionForm">
-            <!-- Hidden input field for position -->
-            <input type="hidden" name="position" value="{{ position }}">
-            
-            <div class="slidecontainer" style="width: 500px; margin:0 auto;">        
-                <h1 style="text-align:center">{{ card1 }}</h1>
-                <h1 style="text-align:center">{{ card2 }}</h1>
+        <!-- JavaScript function to handle redirection -->
+        <script>
+            function redirectTo(skillLevel) {
+                window.location.href = '/' + skillLevel;
+            }
+        </script>
+    
+        <div class="container" style="margin-top: 10px">
+            <div class="center">
+                <!-- Buttons with onclick attribute to trigger the redirection function -->
+                <button class="btn btn-primary" onclick="redirectTo('beginner')">Beginner</button>
+                <button class="btn btn-primary" onclick="redirectTo('intermediate')">Intermediate</button>
+                <button class="btn btn-primary" onclick="redirectTo('advanced')">Advanced</button>
             </div>
-            
-            <div class="container" style="margin-top: 10px">
-                <div class="center">
-                    <!-- Hidden input fields for card1 and card2 -->
-                    <input type="hidden" name="card1" value="{{ card1 }}">
-                    <input type="hidden" name="card2" value="{{ card2 }}">
-                    
-                    <input class="btn btn-primary" type="submit" name="Aggress" value="{{ aggress }}">
-                    <input class="btn btn-primary" type="submit" name="Fold" value="Fold">
-                </div>
-            </div>
-        </form>
+        </div>
 
         <footer style="text-align:center; margin-top: 10px; margin-bottom: 10px">
             Made by Nicholas Lopez and Elliot Chin</footer>

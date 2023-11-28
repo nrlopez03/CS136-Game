@@ -19,15 +19,19 @@ cursor = conn.cursor()
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 @app.route("/", methods=["GET", "POST"])
-def homepage():
+def index():
+    """Show welcome page."""
+
+    return render_template("index.html")
+
+def play(skill):
+    site = skill + ".html"
 
     if request.method == "POST":
 
         position = request.form.get('position')
         card1 = request.form.get('card1')
         card2 = request.form.get('card2')
-
-        skill = "expert"
 
         if position == "sb":
             aggress = "Shove"
@@ -47,7 +51,7 @@ def homepage():
                         (card1, card2, position, skill, action))
         conn.commit()
 
-        return render_template("index.html", title="CS136 Game", card1 = card1, card2 = card2, position = position, aggress = aggress)
+        return render_template(site, title="CS136 Game", card1 = card1, card2 = card2, position = position, aggress = aggress)
 
     else:
 
@@ -65,7 +69,19 @@ def homepage():
             aggress = "Call"
 
 
-        return render_template("index.html", title="CS136 Game", card1 = card1, card2 = card2, position = position, aggress = aggress)
+        return render_template(site, title="CS136 Game", card1 = card1, card2 = card2, position = position, aggress = aggress)
+
+@app.route("/advanced", methods=["GET", "POST"])
+def advanced():
+    return play("advanced")
+
+@app.route("/intermediate", methods=["GET", "POST"])
+def intermediate():
+    return play("intermediate")
+
+@app.route("/beginner", methods=["GET", "POST"])
+def beginner():
+    return play("beginner")
 
 if __name__ == "__main__":
     app.run(debug=True)
