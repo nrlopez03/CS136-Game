@@ -42,7 +42,7 @@ def homepage():
         # created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         # Insert data into the database
-        cursor.execute("CREATE TABLE results (card1 VARCHAR(255),card2 VARCHAR(255),position VARCHAR(255),skill VARCHAR(255),decision VARCHAR(255),played_at TIMESTAMP);")
+        cursor.execute("ALTER TABLE results RENAME COLUMN cerated_at to played_at;")
         cursor.execute("INSERT INTO results (card1, card2, position, skill, decision, created_at) VALUES (%s, %s, %s, %s, %s, CURRENT_TIMESTAMP)",
                         (card1, card2, position, skill, action))
         conn.commit()
