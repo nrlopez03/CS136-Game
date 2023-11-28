@@ -1,7 +1,17 @@
 from flask import Flask, render_template, request
 import random
+import os
+import psycopg2
+from datetime import datetime
 
 app = Flask(__name__)
+
+# Retrieve PostgreSQL database URL from Heroku environment variable
+database_url = os.environ.get("DATABASE_URL")
+
+# Connect to the database
+conn = psycopg2.connect(database_url, sslmode='require')
+cursor = conn.cursor()
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -14,6 +24,8 @@ def homepage():
         position = request.form.get('position')
         card1 = request.form.get('card1')
         card2 = request.form.get('card2')
+
+        skill = "expert"
 
         if position == "sb":
             aggress = "Shove"
@@ -30,7 +42,7 @@ def homepage():
     else:
 
         suits = ["s", "h", "d", "c"]
-        values = ["2","3","4","5","6","7","8","9","T","J","Q","K","A"]
+        values = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"]
         deck = [value + suit for suit in  suits for value in values]
         card1, card2 = random.sample(deck, 2)
 
