@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import random
 import os
 import psycopg2
+# from flask_sqlalchemy import SQLAlchemy
 # from datetime import datetime
 
 app = Flask(__name__)
@@ -41,7 +42,7 @@ def homepage():
         # created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         # Insert data into the database
-        cursor.execute("CREATE TABLE results (card1 VARCHAR(255),card2 VARCHAR(255),position VARCHAR(255),skill VARCHAR(255),decision VARCHAR(255),created_at TIMESTAMP);")
+        cursor.execute("CREATE TABLE results (card1 VARCHAR(255),card2 VARCHAR(255),position VARCHAR(255),skill VARCHAR(255),decision VARCHAR(255),played_at TIMESTAMP);")
         cursor.execute("INSERT INTO results (card1, card2, position, skill, decision, created_at) VALUES (%s, %s, %s, %s, %s, CURRENT_TIMESTAMP)",
                         (card1, card2, position, skill, action))
         conn.commit()
