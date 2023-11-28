@@ -9,6 +9,7 @@ app = Flask(__name__)
 
 # Retrieve PostgreSQL database URL from Heroku environment variable
 database_url = os.environ.get("DATABASE_URL")
+database_url = "postgres://yulppopcmvngzw:69d460d3802d82c396a5d65f5e94bd408ad14474f1a1ba3938855376e4eb7bee@ec2-44-206-204-65.compute-1.amazonaws.com:5432/dfbj7ho88v7t9c"
 
 # Connect to the database
 conn = psycopg2.connect(database_url, sslmode='require')
@@ -42,7 +43,6 @@ def homepage():
         # created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         # Insert data into the database
-        cursor.execute("ALTER TABLE results RENAME COLUMN created_at to played_at;")
         cursor.execute("INSERT INTO results (card1, card2, position, skill, decision, played_at) VALUES (%s, %s, %s, %s, %s, CURRENT_TIMESTAMP)",
                         (card1, card2, position, skill, action))
         conn.commit()
