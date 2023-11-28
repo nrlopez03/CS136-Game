@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import random
 
 app = Flask(__name__)
 
@@ -10,19 +11,39 @@ def homepage():
 
     if request.method == "POST":
 
-        position = "Position: sb"
-        card1 = "4s"
-        card2 = "3s"
+        position = request.form.get('position')
+        card1 = request.form.get('card1')
+        card2 = request.form.get('card2')
 
-        return render_template("index.html", title="CS136 Game", card1 = card1, card2 = card2, position = position)
+        if position == "sb":
+            aggress = "Shove"
+        else:
+            aggress = "Call"
+
+        if 'Aggress' in request.form:
+            action = "aggress"
+        elif 'Fold' in request.form:
+            action = "fold"
+
+        return render_template("index.html", title="CS136 Game", card1 = card1, card2 = card2, position = position, aggress = aggress)
 
     else:
 
-        position = "Position: sb"
-        card1 = "4s"
-        card2 = "3s"
+        suits = ["s", "h", "d", "c"]
+        values = ["2","3","4","5","6","7","8","9","T","J","Q","K","A"]
+        deck = [value + suit for suit in  suits for value in values]
+        card1, card2 = random.sample(deck, 2)
 
-        return render_template("index.html", title="CS136 Game", card1 = card1, card2 = card2, position = position)
+        coin = random.randint(0, 1)
+        if coin == 0:
+            position = "sb"
+            aggress = "Shove"
+        else:
+            position = "bb"
+            aggress = "Call"
+
+
+        return render_template("index.html", title="CS136 Game", card1 = card1, card2 = card2, position = position, aggress = aggress)
 
 if __name__ == "__main__":
     app.run(debug=True)
