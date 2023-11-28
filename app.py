@@ -34,8 +34,16 @@ def homepage():
 
         if 'Aggress' in request.form:
             action = "aggress"
-        elif 'Fold' in request.form:
+        else:
             action = "fold"
+
+        # Get the current timestamp
+        created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        # Insert data into the database
+        cursor.execute("INSERT INTO results (card1, card2, position, skill, action, created_at) VALUES (%s, %s, %s, %s, %s, %s)",
+                        (card1, card2, position, skill, action, created_at))
+        conn.commit()
 
         return render_template("index.html", title="CS136 Game", card1 = card1, card2 = card2, position = position, aggress = aggress)
 
