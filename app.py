@@ -78,9 +78,9 @@ def play(skill):
 
             site = "reveal" + skill + ".html"
 
-            return render_template(site, title="CS136 Game", card1 = card1, card2 = card2, card3 = card3, 
-                                   card4 = card4, card5 = card5, card6 = card6, card7 = card7, card8 = card8, 
-                                   card9 = card9, position = position, result = result)
+            return render_template(site, title="CS136 Game", card1 = card1.upper(), card2 = card2.upper(), card3 = card3.upper(), 
+                                   card4 = card4.upper(), card5 = card5.upper(), card6 = card6.upper(), card7 = card7.upper(), card8 = card8.upper(), 
+                                   card9 = card9.upper(), position = position, result = result)
 
     else:
 

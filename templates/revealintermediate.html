@@ -7,8 +7,21 @@
         <title>CS136 Game</title>
 
         <style>
+
             .hidden-card {
                 display: none;
+            }
+
+            .slidecontainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            }
+
+            .slidecontainer img {
+            width: 20%;
+            height: auto;
+            margin: 0;
             }
         </style>
 
@@ -19,25 +32,25 @@
         <h3 style="text-align:center">Your hand:</h3>
             
             <div class="slidecontainer" style="width: 500px; margin:0 auto;">        
-                <h1 style="text-align:center">{{ card1 }}</h1>
-                <h1 style="text-align:center">{{ card2 }}</h1>
+                <img id="card1" src="{{ url_for('static', filename='images/' ~ card1 ~ '.jpg') }}" alt="{{ card1 }}">
+                <img id="card2" src="{{ url_for('static', filename='images/' ~ card2 ~ '.jpg') }}" alt="{{ card2 }}">
             </div>
 
         <h3 style="text-align:center">Opponent's hand:</h3>
             
             <div class="slidecontainer" style="width: 500px; margin:0 auto;">        
-                <h1 style="text-align:center">{{ card3 }}</h1>
-                <h1 style="text-align:center">{{ card4 }}</h1>
+                <img id="card3" src="{{ url_for('static', filename='images/' ~ card3 ~ '.jpg') }}" alt="{{ card3 }}">
+                <img id="card4" src="{{ url_for('static', filename='images/' ~ card4 ~ '.jpg') }}" alt="{{ card4 }}">
             </div>
 
         <h3 style="text-align:center">Board:</h3>
             
         <div class="slidecontainer" style="width: 500px; margin:0 auto;">
-            <h1 style="text-align:center" id="card5" class="hidden-card">{{ card5 }}</h1>
-            <h1 style="text-align:center" id="card6" class="hidden-card">{{ card6 }}</h1>
-            <h1 style="text-align:center" id="card7" class="hidden-card">{{ card7 }}</h1>
-            <h1 style="text-align:center" id="card8" class="hidden-card">{{ card8 }}</h1>
-            <h1 style="text-align:center" id="card9" class="hidden-card">{{ card9 }}</h1>
+            <img style="display:none" id="card5" class="hidden-card" src="{{ url_for('static', filename='images/' ~ card5 ~ '.jpg') }}" alt="{{ card5 }}">
+            <img style="display:none" id="card6" class="hidden-card" src="{{ url_for('static', filename='images/' ~ card6 ~ '.jpg') }}" alt="{{ card6 }}">
+            <img style="display:none" id="card7" class="hidden-card" src="{{ url_for('static', filename='images/' ~ card7 ~ '.jpg') }}" alt="{{ card7 }}">
+            <img style="display:none" id="card8" class="hidden-card" src="{{ url_for('static', filename='images/' ~ card8 ~ '.jpg') }}" alt="{{ card8 }}">
+            <img style="display:none" id="card9" class="hidden-card" src="{{ url_for('static', filename='images/' ~ card9 ~ '.jpg') }}" alt="{{ card9 }}">
         </div>
     
         <script>

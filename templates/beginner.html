@@ -6,6 +6,25 @@
         
         <title>CS136 Game</title>
 
+        <style>
+
+            .hidden-card {
+                display: none;
+            }
+
+            .slidecontainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            }
+
+            .slidecontainer img {
+            width: 20%;
+            height: auto;
+            margin: 0;
+            }
+        </style>
+
     </head>
     <body>
         <h1 style="text-align:center">{{ title }}</h1>
@@ -17,8 +36,8 @@
             <input type="hidden" name="position" value="{{ position }}">
             
             <div class="slidecontainer" style="width: 500px; margin:0 auto;">        
-                <h1 style="text-align:center">{{ card1 }}</h1>
-                <h1 style="text-align:center">{{ card2 }}</h1>
+                <img  id="card1" src="{{ url_for('static', filename='images/' ~ card1.upper() ~ '.jpg') }}" alt="{{ card1 }}">
+                <img id="card2" src="{{ url_for('static', filename='images/' ~ card2.upper() ~ '.jpg') }}" alt="{{ card2 }}">
             </div>
             
             <div class="container" style="margin-top: 10px">
