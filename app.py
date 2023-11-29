@@ -52,7 +52,7 @@ def play(skill):
         conn.commit()
 
         if action == "fold":
-            return newGame(skill)
+            return newGame(skill, position)
         else:
 
             suits = ["s", "h", "d", "c"]
@@ -86,21 +86,31 @@ def play(skill):
 
         return newGame(skill)
     
-def newGame(skill):
+def newGame(skill, position = "unassigned"):
     site = skill + ".html"
 
     suits = ["s", "h", "d", "c"]
     values = ["2","3","4","5","6","7","8","9","T","J","Q","K","A"]
     deck = [value + suit for suit in  suits for value in values]
     card1, card2 = random.sample(deck, 2)
+    print(position)
 
-    coin = random.randint(0, 1)
-    if coin == 0:
-        position = "sb"
-        aggress = "Shove"
-    else:
+    if position == "unassigned":
+        coin = random.randint(0, 1)
+        if coin == 0:
+            position = "sb"
+            aggress = "Shove"
+        else:
+            position = "bb"
+            aggress = "Call"
+    elif position == "sb":
         position = "bb"
         aggress = "Call"
+    else:
+        position = "sb"
+        aggress = "Shove"
+
+    print(position)
 
     return render_template(site, title="CS136 Game", card1 = card1, card2 = card2, position = position, aggress = aggress)
 
