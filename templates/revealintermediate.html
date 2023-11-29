@@ -6,6 +6,12 @@
         
         <title>CS136 Game</title>
 
+        <style>
+            .hidden-card {
+                display: none;
+            }
+        </style>
+
     </head>
     <body>
         <h1 style="text-align:center">{{ title }}</h1>
@@ -26,21 +32,39 @@
 
         <h3 style="text-align:center">Board:</h3>
             
-            <div class="slidecontainer" style="width: 500px; margin:0 auto;">        
-                <h1 style="text-align:center">{{ card4 }}</h1>
-                <h1 style="text-align:center">{{ card5 }}</h1>
-                <h1 style="text-align:center">{{ card6 }}</h1>
-                <h1 style="text-align:center">{{ card7 }}</h1>
-                <h1 style="text-align:center">{{ card8 }}</h1>
-                <h1 style="text-align:center">{{ card9 }}</h1>
-            </div>
+        <div class="slidecontainer" style="width: 500px; margin:0 auto;">
+            <h1 style="text-align:center" id="card5" class="hidden-card">{{ card5 }}</h1>
+            <h1 style="text-align:center" id="card6" class="hidden-card">{{ card6 }}</h1>
+            <h1 style="text-align:center" id="card7" class="hidden-card">{{ card7 }}</h1>
+            <h1 style="text-align:center" id="card8" class="hidden-card">{{ card8 }}</h1>
+            <h1 style="text-align:center" id="card9" class="hidden-card">{{ card9 }}</h1>
+        </div>
+    
+        <script>
+            // Function to show a hidden element after a delay
+            function showAfterDelay(elementId, delay) {
+                setTimeout(function () {
+                    document.getElementById(elementId).style.display = 'block';
+                }, delay);
+            }
+    
+            // Show cards 5, 6, and 7 after 3 seconds
+            showAfterDelay('card5', 3000);
+            showAfterDelay('card6', 3000);
+            showAfterDelay('card7', 3000);
+            showAfterDelay('card8', 8000);  // Show after 8 seconds
+            showAfterDelay('card9', 12000); // Show after 12 seconds
+            showAfterDelay('result', 12000); // Show after 12 seconds
+    
+            // You can add additional showAfterDelay calls for card8, card9, etc.
+        </script>
 
-        <h3 style="text-align:center">{{ result }}</h3>
+        <h3 style="text-align:center" id="result" class="hidden-card">{{ result }}</h3>
 
         <script>
             var timer = setTimeout(function() {
             window.location='/intermediate'
-        }, 8000);
+        }, 16000);
         </script>
 
 
