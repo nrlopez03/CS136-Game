@@ -1,87 +1,9 @@
-<html>
-    <head>
-        <link href="/static/styles.css" rel="stylesheet">
+{% extends "reveal.html" %}
 
-        <link href="/static/favicon.ico" rel="icon">
-        
-        <title>CS136 Game</title>
-
-        <style>
-
-            .hidden-card {
-                display: none;
-            }
-
-            .slidecontainer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            }
-
-            .slidecontainer img {
-            width: 20%;
-            height: auto;
-            margin: 0;
-            }
-        </style>
-
-    </head>
-    <body>
-        <h1 style="text-align:center">{{ title }}</h1>
-        <h2 style="text-align:center">Position: {{ position }}</h2>
-        <h3 style="text-align:center">Your hand:</h3>
-            
-            <div class="slidecontainer" style="width: 500px; margin:0 auto;">        
-                <img id="card1" src="{{ url_for('static', filename='images/' ~ card1 ~ '.jpg') }}" alt="{{ card1 }}">
-                <img id="card2" src="{{ url_for('static', filename='images/' ~ card2 ~ '.jpg') }}" alt="{{ card2 }}">
-            </div>
-
-        <h3 style="text-align:center">Opponent's hand:</h3>
-            
-            <div class="slidecontainer" style="width: 500px; margin:0 auto;">        
-                <img id="card3" src="{{ url_for('static', filename='images/' ~ card3 ~ '.jpg') }}" alt="{{ card3 }}">
-                <img id="card4" src="{{ url_for('static', filename='images/' ~ card4 ~ '.jpg') }}" alt="{{ card4 }}">
-            </div>
-
-        <h3 style="text-align:center">Board:</h3>
-            
-        <div class="slidecontainer" style="width: 500px; margin:0 auto;">
-            <img style="display:none" id="card5" class="hidden-card" src="{{ url_for('static', filename='images/' ~ card5 ~ '.jpg') }}" alt="{{ card5 }}">
-            <img style="display:none" id="card6" class="hidden-card" src="{{ url_for('static', filename='images/' ~ card6 ~ '.jpg') }}" alt="{{ card6 }}">
-            <img style="display:none" id="card7" class="hidden-card" src="{{ url_for('static', filename='images/' ~ card7 ~ '.jpg') }}" alt="{{ card7 }}">
-            <img style="display:none" id="card8" class="hidden-card" src="{{ url_for('static', filename='images/' ~ card8 ~ '.jpg') }}" alt="{{ card8 }}">
-            <img style="display:none" id="card9" class="hidden-card" src="{{ url_for('static', filename='images/' ~ card9 ~ '.jpg') }}" alt="{{ card9 }}">
-        </div>
-    
-        <script>
-            // Function to show a hidden element after a delay
-            function showAfterDelay(elementId, delay) {
-                setTimeout(function () {
-                    document.getElementById(elementId).style.display = 'block';
-                }, delay);
-            }
-    
-            // Show cards 5, 6, and 7 after 3 seconds
-            showAfterDelay('card5', 3000);
-            showAfterDelay('card6', 3000);
-            showAfterDelay('card7', 3000);
-            showAfterDelay('card8', 8000);  // Show after 8 seconds
-            showAfterDelay('card9', 12000); // Show after 12 seconds
-            showAfterDelay('result', 12000); // Show after 12 seconds
-    
-            // You can add additional showAfterDelay calls for card8, card9, etc.
-        </script>
-
-        <h3 style="text-align:center" id="result" class="hidden-card">{{ result }}</h3>
-
-        <script>
-            var timer = setTimeout(function() {
-            window.location='/intermediate'
-        }, 16000);
-        </script>
-
-
-        <footer style="text-align:center; margin-top: 10px; margin-bottom: 10px">
-            Made by Nicholas Lopez and Elliot Chin</footer>
-    </body>
-</html>
+{% block main %}
+    <script>
+        var timer = setTimeout(function() {
+        window.location='/intermediate'
+    }, 16000);
+    </script>
+{% endblock %}
