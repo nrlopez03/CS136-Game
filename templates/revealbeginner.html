@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <link href="/static/favicon.ico" rel="icon">
+        
+        <title>CS136 Game</title>
+
+    </head>
+    <body>
+        <h1 style="text-align:center">{{ title }}</h1>
+        <h2 style="text-align:center">Position: {{ position }}</h2>
+        <h3 style="text-align:center">Your hand:</h3>
+            
+            <div class="slidecontainer" style="width: 500px; margin:0 auto;">        
+                <h1 style="text-align:center">{{ card1 }}</h1>
+                <h1 style="text-align:center">{{ card2 }}</h1>
+            </div>
+
+        <h3 style="text-align:center">Opponent's hand:</h3>
+            
+            <div class="slidecontainer" style="width: 500px; margin:0 auto;">        
+                <h1 style="text-align:center">{{ card3 }}</h1>
+                <h1 style="text-align:center">{{ card4 }}</h1>
+            </div>
+
+        <h3 style="text-align:center">Board:</h3>
+            
+            <div class="slidecontainer" style="width: 500px; margin:0 auto;">        
+                <h1 style="text-align:center">{{ card4 }}</h1>
+                <h1 style="text-align:center">{{ card5 }}</h1>
+                <h1 style="text-align:center">{{ card6 }}</h1>
+                <h1 style="text-align:center">{{ card7 }}</h1>
+                <h1 style="text-align:center">{{ card8 }}</h1>
+                <h1 style="text-align:center">{{ card9 }}</h1>
+            </div>
+
+        <h3 style="text-align:center">{{ result }}</h3>
+
+        <script>
+            var timer = setTimeout(function() {
+            window.location='/beginner'
+        }, 8000);
+        </script>
+
+
+        <footer style="text-align:center; margin-top: 10px; margin-bottom: 10px">
+            Made by Nicholas Lopez and Elliot Chin</footer>
+    </body>
+</html>

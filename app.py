@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import random
 import os
 import psycopg2
+import check
 # from flask_sqlalchemy import SQLAlchemy
 # from datetime import datetime
 
@@ -25,7 +26,6 @@ def index():
     return render_template("index.html")
 
 def play(skill):
-    site = skill + ".html"
 
     if request.method == "POST":
 
@@ -51,25 +51,58 @@ def play(skill):
                         (card1, card2, position, skill, action))
         conn.commit()
 
-        return render_template(site, title="CS136 Game", card1 = card1, card2 = card2, position = position, aggress = aggress)
+        if action == "fold":
+            return newGame(skill)
+        else:
+
+            suits = ["s", "h", "d", "c"]
+            values = ["2","3","4","5","6","7","8","9","T","J","Q","K","A"]
+            deck = [value + suit for suit in  suits for value in values]
+            deck.remove(card1)
+            deck.remove(card2)
+            card3, card4, card5, card6, card7, card8, card9 = random.sample(deck, 7)
+            for card in [card3, card4, card5, card6, card7, card8, card9]:
+                deck.remove(card)
+
+            board = check.board_state(3, [card1, card2], [card3, card4], [card5, card6, card7, card8, card9], deck)
+
+            result = board.calculate_winner()
+            print(result)
+
+            if result == 1:
+                result = "You win"
+            elif result == 2:
+                result = "You lose"
+            else:
+                result = "Chop"
+
+            site = "reveal" + skill + ".html"
+
+            return render_template(site, title="CS136 Game", card1 = card1, card2 = card2, card3 = card3, 
+                                   card4 = card4, card5 = card5, card6 = card6, card7 = card7, card8 = card8, 
+                                   card9 = card9, position = position, result = result)
 
     else:
 
-        suits = ["s", "h", "d", "c"]
-        values = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"]
-        deck = [value + suit for suit in  suits for value in values]
-        card1, card2 = random.sample(deck, 2)
+        return newGame(skill)
+    
+def newGame(skill):
+    site = skill + ".html"
 
-        coin = random.randint(0, 1)
-        if coin == 0:
-            position = "sb"
-            aggress = "Shove"
-        else:
-            position = "bb"
-            aggress = "Call"
+    suits = ["s", "h", "d", "c"]
+    values = ["2","3","4","5","6","7","8","9","T","J","Q","K","A"]
+    deck = [value + suit for suit in  suits for value in values]
+    card1, card2 = random.sample(deck, 2)
 
+    coin = random.randint(0, 1)
+    if coin == 0:
+        position = "sb"
+        aggress = "Shove"
+    else:
+        position = "bb"
+        aggress = "Call"
 
-        return render_template(site, title="CS136 Game", card1 = card1, card2 = card2, position = position, aggress = aggress)
+    return render_template(site, title="CS136 Game", card1 = card1, card2 = card2, position = position, aggress = aggress)
 
 @app.route("/advanced", methods=["GET", "POST"])
 def advanced():
