@@ -27,7 +27,7 @@
 
     </head>
     <body>
-        <h2 style="text-align:center">{{ result }}</h2>
+        <h2 style="text-align: center">{{ result|replace('\n', '<br>')|safe }}</h2>
         <h2 style="text-align:center">PnL: {{ PnL }}</h2>
         <div class="slidecontainer" style="width: 500px; margin:0 auto;">        
             <img  id="sb_fold" src="static/images/sb_fold.png" alt="sb folds">
