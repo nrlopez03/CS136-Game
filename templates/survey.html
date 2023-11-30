@@ -30,7 +30,15 @@
         <h1 style="text-align:center">{{ title }}</h1>
         <h2 style="text-align: center">{{ previous|replace('\n', '<br>')|safe }}</h2>
         <h2 style="text-align:center">PnL: {{ PnL }}</h2>
-        <h2 style="text-align:center">Position: {{ position }}</h2>
+        <h2 style="text-align: center">
+            {% if position == "sb" %}
+                Position: Small Blind
+            {% elif position == "bb" %}
+                Position: Big Blind
+            {% else %}
+                Unknown Position
+            {% endif %}
+        </h2>
         <div style="text-align: center;">
             <img id="position" src="{{ url_for('static', filename='images/' ~ position ~ '.png') }}" alt="{{ position }}" style="width: 30%;">
         </div>        

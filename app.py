@@ -145,7 +145,7 @@ def newGame(skill, position = "unassigned", PnL = 0.0, previous = ""):
             if previous != "":
                 result = previous + "\n Then, the small blind folded. +0.5"
             else:
-                result = "Then, the small blind folded. +0.5"
+                result = "The small blind folded. +0.5"
 
             return render_template("sb_fold.html", skill = skill, position = position, PnL = PnL + 0.5, 
                                    result = result)
