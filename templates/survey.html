@@ -28,7 +28,12 @@
     </head>
     <body>
         <h1 style="text-align:center">{{ title }}</h1>
+        <h2 style="text-align: center">{{ previous|replace('\n', '<br>')|safe }}</h2>
+        <h2 style="text-align:center">PnL: {{ PnL }}</h2>
         <h2 style="text-align:center">Position: {{ position }}</h2>
+        <div style="text-align: center;">
+            <img id="position" src="{{ url_for('static', filename='images/' ~ position ~ '.png') }}" alt="{{ position }}" style="width: 30%;">
+        </div>        
         <h3 style="text-align:center">Your hand:</h3>
         
         {% block main %}{% endblock %}

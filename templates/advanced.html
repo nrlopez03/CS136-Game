@@ -4,6 +4,8 @@
     <form action="/advanced" method="post" id="actionForm">
         <!-- Hidden input field for position -->
         <input type="hidden" name="position" value="{{ position }}">
+        <input type="hidden" name="PnL" value="{{ PnL }}">
+        <input type="hidden" name="previous" value="{{ previous }}">
         
         <div class="slidecontainer" style="width: 500px; margin:0 auto;">        
             <img  id="card1" src="{{ url_for('static', filename='images/' ~ card1.upper() ~ '.jpg') }}" alt="{{ card1 }}">
@@ -15,6 +17,8 @@
                 <!-- Hidden input fields for card1 and card2 -->
                 <input type="hidden" name="card1" value="{{ card1 }}">
                 <input type="hidden" name="card2" value="{{ card2 }}">
+                <input type="hidden" name="card3" value="{{ card3 }}">
+                <input type="hidden" name="card4" value="{{ card4 }}">
                 
                 <input class="btn btn-primary" type="submit" name="Aggress" value="{{ aggress }}">
                 <input class="btn btn-primary" type="submit" name="Fold" value="Fold">

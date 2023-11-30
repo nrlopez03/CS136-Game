@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <link href="/static/favicon.ico" rel="icon">
+        
+        <title>CS136 Game</title>
+
+        <style>
+
+            .hidden-card {
+                display: none;
+            }
+
+            .slidecontainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            }
+
+            .slidecontainer img {
+            width: 100%;
+            height: auto;
+            margin: 0;
+            }
+        </style>
+
+    </head>
+    <body>
+        <h2 style="text-align:center">{{ result }}</h2>
+        <h2 style="text-align:center">PnL: {{ PnL }}</h2>
+        <div class="slidecontainer" style="width: 500px; margin:0 auto;">        
+            <img  id="sb_fold" src="static/images/sb_fold.png" alt="sb folds">
+        </div>
+
+        <footer style="text-align:center; margin-top: 10px; margin-bottom: 10px">
+            Made by Nicholas Lopez and Elliot Chin</footer>
+    </body>
+
+    <form id="postForm" action="/next" method="post">
+        <!-- You can add any additional hidden fields if needed -->
+        <input type="hidden" name="PnL" value="{{ PnL }}">
+        <input type="hidden" name="result" value="{{ result }}">
+        <input type="hidden" name="skill" value="{{ skill }}">
+        <input type="hidden" name="position" value="{{ position }}">
+    </form>
+    
+    <script>
+        var timer = setTimeout(function() {
+            document.getElementById("postForm").submit();
+        }, 3500);
+    </script>
+</html>

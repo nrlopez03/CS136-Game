@@ -1,9 +1,17 @@
 {% extends "reveal.html" %}
 
 {% block main %}
-    <script>
-        var timer = setTimeout(function() {
-        window.location='/intermediate'
+<form id="postForm" action="/next" method="post">
+    <!-- You can add any additional hidden fields if needed -->
+    <input type="hidden" name="PnL" value="{{ PnL }}">
+    <input type="hidden" name="result" value="{{ result }}">
+    <input type="hidden" name="skill" value="{{ skill }}">
+    <input type="hidden" name="position" value="{{ position }}">
+</form>
+
+<script>
+    var timer = setTimeout(function() {
+        document.getElementById("postForm").submit();
     }, 7000);
-    </script>
+</script>
 {% endblock %}
