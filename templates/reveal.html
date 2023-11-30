@@ -28,7 +28,15 @@
     </head>
     <body>
         <h1 style="text-align:center">{{ title }}</h1>
-        <h2 style="text-align:center">Position: {{ position }}</h2>
+        <h2 style="text-align: center">
+            {% if position == "sb" %}
+                Position: Small Blind
+            {% elif position == "bb" %}
+                Position: Big Blind
+            {% else %}
+                Unknown Position
+            {% endif %}
+        </h2>
         <h3 style="text-align:center">Your hand:</h3>
             
             <div class="slidecontainer" style="width: 500px; margin:0 auto;">        
