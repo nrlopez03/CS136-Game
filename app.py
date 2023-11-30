@@ -143,9 +143,9 @@ def newGame(skill, position = "unassigned", PnL = 0.0, previous = ""):
         if call < 0 or (random.random() < fold/(fold + call) and fold > 0):
 
             if previous != "":
-                result = previous + "\n Then, the small blind folded. +0.5"
+                result = previous + "\n Then, the small blind folded while you were the big blind. +0.5"
             else:
-                result = "The small blind folded. +0.5"
+                result = "The small blind folded while you were the big blind. +0.5"
 
             return render_template("sb_fold.html", skill = skill, position = position, PnL = PnL + 0.5, 
                                    result = result)
