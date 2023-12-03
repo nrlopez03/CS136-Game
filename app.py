@@ -18,7 +18,6 @@ p2_resp = pd.read_csv(os.path.join(app.static_folder, 'p2_resp.csv'), header=Non
 
 # Retrieve PostgreSQL database URL from Heroku environment variable
 database_url = os.environ.get("DATABASE_URL")
-database_url = "postgres://yulppopcmvngzw:69d460d3802d82c396a5d65f5e94bd408ad14474f1a1ba3938855376e4eb7bee@ec2-44-206-204-65.compute-1.amazonaws.com:5432/dfbj7ho88v7t9c"
 
 # Connect to the database
 conn = psycopg2.connect(database_url, sslmode='require')
