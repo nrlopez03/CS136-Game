@@ -1,4 +1,4 @@
-# nfl-rank
+# CS136-Game
 Nicholas Lopez and Elliot Chin
 
 November 28, 2023
