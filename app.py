@@ -16,12 +16,14 @@ p2_resp = pd.read_csv(os.path.join(app.static_folder, 'p2_resp.csv'), header=Non
 
 # PnL = 0.0
 
+# code to write to database is commented-out
+
 # Retrieve PostgreSQL database URL from Heroku environment variable
-database_url = os.environ.get("DATABASE_URL")
+# database_url = os.environ.get("DATABASE_URL")
 
 # Connect to the database
-conn = psycopg2.connect(database_url, sslmode='require')
-cursor = conn.cursor()
+# conn = psycopg2.connect(database_url, sslmode='require')
+# cursor = conn.cursor()
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -57,9 +59,9 @@ def play(skill):
         # created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         # Insert data into the database
-        cursor.execute("INSERT INTO results (card1, card2, position, skill, decision, played_at) VALUES (%s, %s, %s, %s, %s, CURRENT_TIMESTAMP)",
-                        (card1, card2, position, skill, action))
-        conn.commit()
+        # cursor.execute("INSERT INTO results (card1, card2, position, skill, decision, played_at) VALUES (%s, %s, %s, %s, %s, CURRENT_TIMESTAMP)",
+        #                 (card1, card2, position, skill, action))
+        # conn.commit()
 
         if action == "fold":
 
